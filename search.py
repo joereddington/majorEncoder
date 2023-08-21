@@ -84,7 +84,7 @@ if __name__ == '__main__':
         print("Usage: python script_name.py <digits> <max_matches>")
         sys.exit(1)
 
-    target_digits = sys.argv[1]
+    target_digits = sys.argv[1].replace('.','')
     max_matches = int(sys.argv[2])
     words = load_numbered_words("numbered_words.txt")
     verbs = load_numbered_words("numbered_verbs.txt")
