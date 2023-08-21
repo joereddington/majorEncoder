@@ -1,3 +1,4 @@
+import sys
 def convert_to_integer(word):
     replace_dict = {
         'l': '1',
@@ -29,7 +30,8 @@ def convert_to_integer(word):
 
 def process_file():
     # Open input and output files
-    with open('words.txt', 'r') as infile, open('numbered_words.txt', 'w') as outfile:
+    target_file = sys.argv[1]
+    with open(target_file, 'r') as infile, open('numbered_'+target_file, 'w') as outfile:
         # Iterate over each line in the input file
         for line in infile:
             word = line.strip()  # Remove newline characters
@@ -42,5 +44,6 @@ def process_file():
 #print(convert_to_integer("bail"))
 #print(convert_to_integer("skywalker"))
 
-process_file()
+if __name__ == '__main__':
+    process_file()
 

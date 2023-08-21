@@ -21,6 +21,39 @@ def find_word_combbinations(target, words, current=[]):
             # The word can be used. Continue with the remaining target.
             yield from find_word_combbinations(target[len(number):], words, current + [word])
 
+
+def get_exact_matches_for_number(target, words):
+        words_found=[]
+        for word,number in words.items():
+            if (number == target):
+                words_found.append(word) 
+        return words_found
+    
+def match_number_to_structure(target_digits,structure, padding):
+    print(padding+"Enter match structure")
+    wordlist=structure.pop(0) #so we have the words for this itteration and have prepared structure
+    for i in reversed(range(len(target_digits))):
+        print(padding+"We seek a match for the {} digits:{}".format(i+1,target_digits[:i+1]))
+        words_found=get_exact_matches_for_number(target_digits[:i+1],wordlist)
+        if (words_found):
+            print(padding+"We found the following matches:")
+            for word in words_found:
+                print(padding+word) 
+            if (target_digits[i+1:]==""):
+                print(padding+"Whole target matched")
+                #Then recusion finnishes, we are done with this branch 
+                structure.insert(0,wordlist) #because it's recusive. 
+                return 
+            else:
+                print(padding+"Now we need to match the renaming section: {}".format(target_digits[i+1:]))
+                match_number_to_structure(target_digits[i+1:],structure, padding+"  ")
+                #Don't return here, because the loop will want more
+        else:
+            print(padding+"We found NO matches")
+    structure.insert(0,wordlist) #because it's recusive. 
+    return 
+
+
 if __name__ == '__main__':
     if len(sys.argv) < 3:
         print("Usage: python script_name.py <digits> <max_matches>")
@@ -29,6 +62,15 @@ if __name__ == '__main__':
     target_digits = sys.argv[1]
     max_matches = int(sys.argv[2])
     words = load_numbered_words("numbered_words.txt")
+    verbs = load_numbered_words("numbered_verbs.txt")
+    nouns = load_numbered_words("numbered_nouns.txt")
+    adjectives = load_numbered_words("numbered_adjectives.txt")
+
+
+    # New Approach   
+    structure=[adjectives,nouns,verbs,nouns]
+    match_number_to_structure(target_digits,structure, "") 
+
 
     counter = 0
     for combination in find_word_combbinations(target_digits, words):
