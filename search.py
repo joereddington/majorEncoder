@@ -41,7 +41,7 @@ def print_results_table(columns):
     # Find the maximum width of each column
     column_widths=[]
     for column in columns: 
-        length=max(column, key =len
+        length=len(max(column, key =len))
         column_widths.append(length)
     # Print the table
     for row_index in range(max_rows):
@@ -76,7 +76,6 @@ def match_number_to_structure(target_digits,structure, padding,results_so_far=[]
         else:
             print(padding+"We found NO matches")
     structure.insert(0,wordlist) #because it's recusive. 
-    results_so_far.pop()
     return 
 
 
