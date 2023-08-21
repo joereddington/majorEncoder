@@ -34,12 +34,15 @@ def print_results_table(columns):
         print("Empty table")
         return
     
+    print("A result:")
     # Find the maximum number of rows
     max_rows = max(len(column) for column in columns)
     
     # Find the maximum width of each column
-    column_widths = [max(len(str(column[row])) if row < len(column) else 0 for column in columns) for row in range(max_rows)]
-    
+    column_widths=[]
+    for column in columns: 
+        length=max(column, key =len
+        column_widths.append(length)
     # Print the table
     for row_index in range(max_rows):
         formatted_row = [str(column[row_index]).ljust(width) if row_index < len(column) else ''.ljust(width) for column, width in zip(columns, column_widths)]
@@ -47,10 +50,10 @@ def print_results_table(columns):
 
     
 def match_number_to_structure(target_digits,structure, padding,results_so_far=[]):
-    print(padding+"Enter match structure")
+    #print(padding+"Enter match structure")
     wordlist=structure.pop(0) #so we have the words for this itteration and have prepared structure
     for i in reversed(range(len(target_digits))):
-        print(padding+"We seek a match for the {} digits:{}".format(i+1,target_digits[:i+1]))
+        #print(padding+"We seek a match for the {} digits:{}".format(i+1,target_digits[:i+1]))
         words_found=get_exact_matches_for_number(target_digits[:i+1],wordlist)
         if (words_found):
             results_so_far.append(words_found)
@@ -58,14 +61,14 @@ def match_number_to_structure(target_digits,structure, padding,results_so_far=[]
             #for word in words_found:
             #    print(padding+word) 
             if (target_digits[i+1:]==""):
-                print(padding+"Whole target matched")
+                #print(padding+"Whole target matched")
                 #Then recusion finnishes, we are done with this branch 
                 print_results_table(results_so_far)    
                 structure.insert(0,wordlist) #because it's recusive.
                 results_so_far.pop() 
                 return 
             else:
-                print(padding+"Now we need to match the renaming section: {}".format(target_digits[i+1:]))
+                #print(padding+"Now we need to match the renaming section: {}".format(target_digits[i+1:]))
                 match_number_to_structure(target_digits[i+1:],structure, padding+"  ", results_so_far) 
                 
                 results_so_far.pop() 
