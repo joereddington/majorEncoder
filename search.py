@@ -28,29 +28,52 @@ def get_exact_matches_for_number(target, words):
             if (number == target):
                 words_found.append(word) 
         return words_found
+
+def print_results_table(columns):
+    if not columns:
+        print("Empty table")
+        return
     
-def match_number_to_structure(target_digits,structure, padding):
+    # Find the maximum number of rows
+    max_rows = max(len(column) for column in columns)
+    
+    # Find the maximum width of each column
+    column_widths = [max(len(str(column[row])) if row < len(column) else 0 for column in columns) for row in range(max_rows)]
+    
+    # Print the table
+    for row_index in range(max_rows):
+        formatted_row = [str(column[row_index]).ljust(width) if row_index < len(column) else ''.ljust(width) for column, width in zip(columns, column_widths)]
+        print(" | ".join(formatted_row))
+
+    
+def match_number_to_structure(target_digits,structure, padding,results_so_far=[]):
     print(padding+"Enter match structure")
     wordlist=structure.pop(0) #so we have the words for this itteration and have prepared structure
     for i in reversed(range(len(target_digits))):
         print(padding+"We seek a match for the {} digits:{}".format(i+1,target_digits[:i+1]))
         words_found=get_exact_matches_for_number(target_digits[:i+1],wordlist)
         if (words_found):
-            print(padding+"We found the following matches:")
-            for word in words_found:
-                print(padding+word) 
+            results_so_far.append(words_found)
+            #print(padding+"We found the following matches:")
+            #for word in words_found:
+            #    print(padding+word) 
             if (target_digits[i+1:]==""):
                 print(padding+"Whole target matched")
                 #Then recusion finnishes, we are done with this branch 
-                structure.insert(0,wordlist) #because it's recusive. 
+                print_results_table(results_so_far)    
+                structure.insert(0,wordlist) #because it's recusive.
+                results_so_far.pop() 
                 return 
             else:
                 print(padding+"Now we need to match the renaming section: {}".format(target_digits[i+1:]))
-                match_number_to_structure(target_digits[i+1:],structure, padding+"  ")
+                match_number_to_structure(target_digits[i+1:],structure, padding+"  ", results_so_far) 
+                
+                results_so_far.pop() 
                 #Don't return here, because the loop will want more
         else:
             print(padding+"We found NO matches")
     structure.insert(0,wordlist) #because it's recusive. 
+    results_so_far.pop()
     return 
 
 
