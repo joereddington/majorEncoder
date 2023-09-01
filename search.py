@@ -51,7 +51,11 @@ def print_results_table(columns):
     
 def match_number_to_structure(target_digits,structure, padding,results_so_far=[]):
     #print(padding+"Enter match structure")
-    wordlist=structure.pop(0) #so we have the words for this itteration and have prepared structure
+    wordlist=[]
+    if len(structure)>0:
+        wordlist=structure.pop(0) #so we have the words for this itteration and have prepared structure
+    else:
+        return
     for i in reversed(range(len(target_digits))):
         #print(padding+"We seek a match for the {} digits:{}".format(i+1,target_digits[:i+1]))
         words_found=get_exact_matches_for_number(target_digits[:i+1],wordlist)
@@ -93,7 +97,7 @@ if __name__ == '__main__':
 
 
     # New Approach   
-    structure=[adjectives,nouns,verbs,nouns]
+    structure=[adjectives,nouns]
     match_number_to_structure(target_digits,structure, "") 
 
 

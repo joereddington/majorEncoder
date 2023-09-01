@@ -58647,7 +58647,6 @@ katar_peninsula: 7462201
 katari: 74
 kate_chopin: 7862
 kate_o'flaherty_chopin: 75147862
-kate_smith: 7037
 katharevusa: 7450
 katharine_hepburn: 7426642
 katharine_houghton_hepburn: 7429726642
