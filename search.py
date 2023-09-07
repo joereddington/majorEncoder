@@ -97,6 +97,7 @@ if __name__ == '__main__':
 
 
     # New Approach   
+    # TODO - a quick win is adding some other structures and perhaps reading them from a file
     structure=[adjectives,nouns]
     match_number_to_structure(target_digits,structure, "") 
 

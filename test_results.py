@@ -49,7 +49,6 @@ confirm("299792", "Candied Takedown")
 
 # Boltzmann constant 
 confirm("1.380649", "calm cheeseboard")
-print(to_latex("calm cheeseboard"))
 
 # Newtonican Constant of graviation
 confirm("6.67430", "upbeat rock music")
@@ -72,3 +71,4 @@ confirm("5.670374419","Fab tusk metric world")
 confirm("9.1093837015","Glazed mash comatose elf")
 confirm("9.1093837015","Glazed mash comatose elf")
 confirm("9.1093837015","Highly sexed amish meet sea wolf")
+print(to_latex("happy thermos"))
