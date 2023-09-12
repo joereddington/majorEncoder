@@ -44,10 +44,8 @@ class TestSuite(unittest.TestCase):
         for key in model.lookup_dict:
             print(f"X{key}X")
         target = set_generator.convert_to_integer("helped big dog") # Because we're about to give them 'cat' for free
-        combinations = list(search.find_markov_word_combinations(target, model,["cat"]))
-        for combination in combinations:
-            print(combination)
-        print("End of Test")
+        first_combination = list(search.find_markov_word_combinations(target, model,["cat"]))[0]
+        self.assertEqual(first_combination,['cat', 'helped', 'big', 'dog'])
         
     def test_markov2(self):
         training_string="big dog helped big cat helped"
@@ -57,10 +55,8 @@ class TestSuite(unittest.TestCase):
         for key in model.lookup_dict:
             print(f"X{key}X")
         target = set_generator.convert_to_integer("cat helped big dog") 
-        combinations = list(search.find_markov_word_combinations(target, model,[]))
-        for combination in combinations:
-            print(combination)
-        print("End of Test")
+        first_combination = list(search.find_markov_word_combinations(target, model,[]))[0]
+        self.assertEqual(first_combination,['cat', 'helped', 'big', 'dog'])
     
     
     def tearDown(self):

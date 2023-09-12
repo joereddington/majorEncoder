@@ -34,7 +34,11 @@ def find_markov_word_combinations(target, model, current=[]):
             number=set_generator.convert_to_integer(option)
             if target.startswith(number):
                 yield from find_markov_word_combinations(target[len(number):], model, current + [option])
-
+    else: #Then we are in the very start case
+        for option in model.lookup_dict: #So all the words in the damn file 
+            number=set_generator.convert_to_integer(option)
+            if target.startswith(number):
+                yield from find_markov_word_combinations(target[len(number):], model, current + [option])
 
 
 
