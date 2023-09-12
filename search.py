@@ -1,4 +1,5 @@
 import sys
+import set_generator
 
 def load_numbered_words(filename):
     word_dict = {}
@@ -20,6 +21,22 @@ def find_word_combinations(target, words, current=[]):
         if target.startswith(number):
             # The word can be used. Continue with the remaining target.
             yield from find_word_combinations(target[len(number):], words, current + [word])
+
+def find_markov_word_combinations(target, model, current=[]):
+    print(f"Entering function: {target}, {current}")
+    if not target:  # if the target string is empty, a solution has been found
+        yield current
+        return
+    if current: 
+        last_word=current[-1]
+        words_that_could_follow=model.lookup_dict[last_word]
+        for option in words_that_could_follow:
+            number=set_generator.convert_to_integer(option)
+            if target.startswith(number):
+                yield from find_markov_word_combinations(target[len(number):], model, current + [option])
+
+
+
 
 
 def get_exact_matches_for_number(target, words):
