@@ -49,6 +49,18 @@ class TestSuite(unittest.TestCase):
             print(combination)
         print("End of Test")
         
+    def test_markov2(self):
+        training_string="big dog helped big cat helped"
+        model=markov.MarkovChain()
+        model.train(training_string)
+        print(model.lookup_dict)
+        for key in model.lookup_dict:
+            print(f"X{key}X")
+        target = set_generator.convert_to_integer("cat helped big dog") 
+        combinations = list(search.find_markov_word_combinations(target, model,[]))
+        for combination in combinations:
+            print(combination)
+        print("End of Test")
     
     
     def tearDown(self):
