@@ -1,5 +1,8 @@
 import sys
 def convert_to_integer(word):
+    #import must be a dictionary word
+    #Must return an integer (as a string)  
+    word=word.lower()
     replace_dict = {
         'l': '1',
         'n': '2',

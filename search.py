@@ -11,7 +11,7 @@ def load_numbered_words(filename):
     sorted_words = dict(sorted(word_dict.items(), key=lambda item: len(item[1]), reverse=True))
     return sorted_words
 
-def find_word_combbinations(target, words, current=[]):
+def find_word_combinations(target, words, current=[]):
     if not target:  # if the target string is empty, a solution has been found
         yield current
         return
@@ -19,7 +19,7 @@ def find_word_combbinations(target, words, current=[]):
     for word, number in words.items():
         if target.startswith(number):
             # The word can be used. Continue with the remaining target.
-            yield from find_word_combbinations(target[len(number):], words, current + [word])
+            yield from find_word_combinations(target[len(number):], words, current + [word])
 
 
 def get_exact_matches_for_number(target, words):
@@ -103,7 +103,7 @@ if __name__ == '__main__':
 
 
     counter = 0
-    for combination in find_word_combbinations(target_digits, words):
+    for combination in find_word_combinations(target_digits, words):
         print(", ".join(combination))
         counter += 1
         if counter == max_matches:
