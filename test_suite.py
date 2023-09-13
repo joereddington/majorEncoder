@@ -58,7 +58,28 @@ class TestSuite(unittest.TestCase):
         first_combination = list(search.find_markov_word_combinations(target, model,[]))[0]
         self.assertEqual(first_combination,['cat', 'helped', 'big', 'dog'])
     
-    
+    def test_markov_from_file(self):
+        model=markov.MarkovChain()
+        model.train_from_file("testinputs/hobbit.txt")
+        target = set_generator.convert_to_integer("dwarfs looked") 
+        target = "662607015"
+        print(model.lookup_dict["the"])
+        first_combination = list(search.find_markov_word_combinations(target, model,["the"]))[0]
+        self.assertEqual(first_combination,['cat', 'helped', 'big', 'dog'])
+   
+
+    def test_markov_ordering(self):
+        model=markov.MarkovChain()
+        training_string="apple bbb apple bb apple bbbb apple b"
+        model.train(training_string)
+        self.assertEqual(model.lookup_dict["apple"],['bbbb', 'bbb', 'bb', 'b'])
+
+    def test_markov_ordering2(self):
+        model=markov.MarkovChain()
+        training_string="apple bbb apple baaaab apple bbbb apple b"
+        model.train(training_string)
+        self.assertEqual(model.lookup_dict["apple"],['bbbb', 'bbb', 'baaaab', 'b'])
+
     def tearDown(self):
         # Clean up any resources created during the tests
         pass

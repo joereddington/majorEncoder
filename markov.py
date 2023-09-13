@@ -17,15 +17,17 @@ class MarkovChain:
                 self.lookup_dict[key].append(next_word)
             else:
                 self.lookup_dict[key] = [next_word]
+        for key in self.lookup_dict:
+            self.lookup_dict[key]=sorted(self.lookup_dict[key], key=lambda x: len(x),reverse=True)
 
     def train(self, text):
         tokens = text.split(' ')
         self._generate_lookup_dict(tokens)
 
-    def train_from_file(self, filename, order=1):
+    def train_from_file(self, filename):
         with open(filename, 'r') as file:
             text = file.read().lower()
-            self.train(text, order)
+            self.train(text)
 
     def generate_text(self, max_length=100):
         context = random.choice(list(self.lookup_dict.keys()))

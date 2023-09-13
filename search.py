@@ -25,6 +25,7 @@ def find_word_combinations(target, words, current=[]):
 def find_markov_word_combinations(target, model, current=[]):
     print(f"Entering function: {target}, {current}")
     if not target:  # if the target string is empty, a solution has been found
+        print(f"Found one: {current}")
         yield current
         return
     if current: 
@@ -32,6 +33,8 @@ def find_markov_word_combinations(target, model, current=[]):
         words_that_could_follow=model.lookup_dict[last_word]
         for option in words_that_could_follow:
             number=set_generator.convert_to_integer(option)
+            if number=="":
+                continue
             if target.startswith(number):
                 yield from find_markov_word_combinations(target[len(number):], model, current + [option])
     else: #Then we are in the very start case
