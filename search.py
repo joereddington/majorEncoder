@@ -1,6 +1,8 @@
 import sys
 import set_generator
 
+shortest_chain=9
+
 def load_numbered_words(filename):
     word_dict = {}
     with open(filename, 'r') as f:
@@ -23,11 +25,16 @@ def find_word_combinations(target, words, current=[]):
             yield from find_word_combinations(target[len(number):], words, current + [word])
 
 def find_markov_word_combinations(target, model, current=[]):
-    print(f"Entering function: {target}, {current}")
+    global shortest_chain
+#    print(f"Entering function: {target}, {current}")
     if not target:  # if the target string is empty, a solution has been found
-        print(f"Found one: {current}")
+        print(f"Found one of length {len(current)} compared to {shortest_chain}: {current}")
+        if len(current)<shortest_chain:
+            shortest_chain=len(current)
         yield current
         return
+    if len(current)>=shortest_chain:
+        return #there are shorter versions
     if current: 
         last_word=current[-1]
         words_that_could_follow=model.lookup_dict[last_word]
@@ -40,7 +47,10 @@ def find_markov_word_combinations(target, model, current=[]):
     else: #Then we are in the very start case
         for option in model.lookup_dict: #So all the words in the damn file 
             number=set_generator.convert_to_integer(option)
+            if len(number)<3: #Because some words don't have numbers
+                continue
             if target.startswith(number):
+                print(option)
                 yield from find_markov_word_combinations(target[len(number):], model, current + [option])
 
 

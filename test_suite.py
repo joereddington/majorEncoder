@@ -36,13 +36,9 @@ class TestSuite(unittest.TestCase):
     
 
     def test_markov(self):
-        print("Starting test")
         training_string="big dog helped big cat helped"
         model=markov.MarkovChain()
         model.train(training_string)
-        print(model.lookup_dict)
-        for key in model.lookup_dict:
-            print(f"X{key}X")
         target = set_generator.convert_to_integer("helped big dog") # Because we're about to give them 'cat' for free
         first_combination = list(search.find_markov_word_combinations(target, model,["cat"]))[0]
         self.assertEqual(first_combination,['cat', 'helped', 'big', 'dog'])
@@ -51,20 +47,28 @@ class TestSuite(unittest.TestCase):
         training_string="big dog helped big cat helped"
         model=markov.MarkovChain()
         model.train(training_string)
-        print(model.lookup_dict)
-        for key in model.lookup_dict:
-            print(f"X{key}X")
         target = set_generator.convert_to_integer("cat helped big dog") 
         first_combination = list(search.find_markov_word_combinations(target, model,[]))[0]
         self.assertEqual(first_combination,['cat', 'helped', 'big', 'dog'])
     
+
+    def test_markov_no_doubles(self):
+        training_string="apples bears apples pears apples bears"
+        model=markov.MarkovChain()
+        model.train(training_string)
+        self.assertEqual(model.lookup_dict["apples"],["pears","bears"])
+
     def test_markov_from_file(self):
         model=markov.MarkovChain()
         model.train_from_file("testinputs/hobbit.txt")
-        target = set_generator.convert_to_integer("dwarfs looked") 
-        target = "662607015"
-        print(model.lookup_dict["the"])
-        first_combination = list(search.find_markov_word_combinations(target, model,["the"]))[0]
+        from pathlib import Path
+        directory_path=Path("testinputs") 
+        for file_path in directory_path.iterdir():
+            if file_path.is_file():
+                print(file_path)
+                model.train_from_file(file_path) 
+        target = "167262192369" #proton mass
+        first_combination = list(search.find_markov_word_combinations(target, model,[]))[0]
         self.assertEqual(first_combination,['cat', 'helped', 'big', 'dog'])
    
 
@@ -79,6 +83,8 @@ class TestSuite(unittest.TestCase):
         training_string="apple bbb apple baaaab apple bbbb apple b"
         model.train(training_string)
         self.assertEqual(model.lookup_dict["apple"],['bbbb', 'bbb', 'baaaab', 'b'])
+
+    
 
     def tearDown(self):
         # Clean up any resources created during the tests

@@ -6,7 +6,6 @@ import sys
 class MarkovChain:
     def __init__(self):
         self.lookup_dict = {}
-        self.number_dict = {}
 
 
     def _generate_lookup_dict(self, text):
@@ -14,18 +13,18 @@ class MarkovChain:
             key = text[i]
             next_word = text[i+1]
             if key in self.lookup_dict:
-                self.lookup_dict[key].append(next_word)
+                self.lookup_dict[key].add(next_word)
             else:
-                self.lookup_dict[key] = [next_word]
+                self.lookup_dict[key] = {next_word}
         for key in self.lookup_dict:
-            self.lookup_dict[key]=sorted(self.lookup_dict[key], key=lambda x: len(x),reverse=True)
+            self.lookup_dict[key]=set(sorted(self.lookup_dict[key], key=lambda x: len(x),reverse=True))
 
     def train(self, text):
         tokens = text.split(' ')
         self._generate_lookup_dict(tokens)
 
     def train_from_file(self, filename):
-        with open(filename, 'r') as file:
+        with open(filename, 'r', errors='ignore') as file:
             text = file.read().lower()
             self.train(text)
 
