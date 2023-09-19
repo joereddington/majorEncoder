@@ -1,0 +1,4 @@
+tags
+testinputs/*.txt
+*.pyc
+__pycache__/*
