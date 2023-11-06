@@ -52,7 +52,6 @@ confirm("299792", "indigo octagon")
 confirm("299792", "Candied Takedown")
 
 
-# 1.25663706212  Vacuum magnetic pereability 
 
 # Planck Constant
 confirm("6.62607015","cobweb in books with saliva")
@@ -62,6 +61,9 @@ confirm("6.62607015","bee hobnobs itself") # Brute recursive
 # Reduced Planck Constant 
 # NOT treid
 
+# 1.25663706212  Vacuum magnetic pereability 
+
+# 376.730313668 Characteristic impedance of vacuum
 # Boltzmann constant 
 confirm("1.380649", "calm cheeseboard")
 
@@ -72,7 +74,11 @@ confirm("6.67430", "pubic tiramisu")
 confirm("6.67430", "epic bathroom ooze")
 print(to_latex("happy thermos"))
 
-#[O[ICosmological constant
+
+# Coulomb Constant 
+confirm("8.9875517923", "Chad shut afflicted cinema")  
+
+#Cosmological constant
 confirm("1.089","clockwise chad")
 confirm("1.089","lazy eyeshadow")
 confirm("1.089","Jealous cowshed")
@@ -83,6 +89,28 @@ confirm("5.670374419","Fab task metric world")
 confirm("5.670374419","Fab tusk metric world")
 confirm("5.670374419","Hoofbeat smother world")
 
+#First radiation constant 
+confirm("3.741771852", "materiality 'til' shaven") 
+# At a particular university you can use 'matriculate' 
+
+
+
+#First radiation constant for spectral radiance 
+confirm("1.191042972","Illegalize orangutan") 
+
+# Second radiation constant 
+confirm("1.438776877","Alarm chatty bushtit")
+
+# 2.897771955 Wien wavelength displacement law constant
+
+# 5.878925757  wien 
+
+# 3.002916077 wien 
+
+
+# 1.602176634 elementary charge 
+
+7.748091729
 
 # Electron mass
 confirm("9.1093837015","Glazed mash comatose elf")

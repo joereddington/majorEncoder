@@ -47,7 +47,7 @@ def print_results_table(columns):
         length=len(max(column, key =len))
         column_widths.append(length)
     # Print the table
-    for row_index in range(max_rows):
+    for row_index in range(min(max_rows,40)):
         formatted_row = [str(column[row_index]).ljust(width) if row_index < len(column) else ''.ljust(width) for column, width in zip(columns, column_widths)]
         print(" | ".join(formatted_row))
 

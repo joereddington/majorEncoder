@@ -17480,7 +17480,6 @@ closings: 10290
 closure: 104
 closured: 1049
 closures: 1040
-closuring: 10429
 clot: 17
 cloth: 17
 clothbound: 17629
@@ -26390,7 +26389,6 @@ dicer: 94
 dicers: 940
 dices: 90
 dicey: 9
-dichotic: 987
 dichotomies: 98730
 dichotomous: 98730
 dichotomously: 987301
@@ -29857,15 +29855,8 @@ dyslexic: 901
 dyslexics: 9010
 dyspepsia: 90660
 dyspepsy: 90660
-dyspeptic: 90667
-dyspeptical: 906671
-dyspeptically: 9066711
-dyspeptics: 906670
-dysprosium: 906403
 dystopia: 9076
 dystopias: 90760
-dystrophic: 90746
-dystrophies: 907460
 dystrophy: 90746
 each: 8
 eager: 94
@@ -33245,7 +33236,6 @@ evinced: 529
 evinces: 520
 evincible: 5261
 evincing: 5229
-evincive: 525
 eviscerate: 5047
 eviscerated: 50479
 eviscerates: 50470
