@@ -51,9 +51,13 @@ confirm("299792", "Winged Tigon")
 confirm("299792", "indigo octagon")
 confirm("299792", "Candied Takedown")
 
+
+# 1.25663706212  Vacuum magnetic pereability 
+
 # Planck Constant
 confirm("6.62607015","cobweb in books with saliva")
 confirm("6.62607015","happen because it's life")
+confirm("6.62607015","bee hobnobs itself") # Brute recursive 
 
 # Reduced Planck Constant 
 # NOT treid
@@ -77,11 +81,12 @@ confirm("1.089","Jealous cowshed")
 #stefan-boltzmann constant 
 confirm("5.670374419","Fab task metric world")
 confirm("5.670374419","Fab tusk metric world")
+confirm("5.670374419","Hoofbeat smother world")
 
 
 # Electron mass
 confirm("9.1093837015","Glazed mash comatose elf")
-confirm("9.1093837015","Glazed mash comatose elf")
+confirm("9.1093837015","Glasgow moo checkmates elf") 
 confirm("9.1093837015","Highly sexed amish meet sea wolf")
 
 # Proton Mass 

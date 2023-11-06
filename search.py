@@ -38,6 +38,8 @@ def print_results_table(columns):
     print("A result:")
     # Find the maximum number of rows
     max_rows = max(len(column) for column in columns)
+    columns = [sorted(lst, key=len) for lst in columns]
+
     
     # Find the maximum width of each column
     column_widths=[]

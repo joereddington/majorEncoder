@@ -125,6 +125,7 @@ def brute_force_anywhere(target):
         unique_numbers.add(number)
     sorted_unique_numbers = sorted(unique_numbers, key=lambda x: len(str(x)),reverse=True)
     result= recursive_number_combinations(target,sorted_unique_numbers)
+    print(result)
     print_table_for_number_combination(result,words)
 
 if __name__ == '__main__':
