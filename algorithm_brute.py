@@ -117,7 +117,7 @@ def brute_force_biggest(target, matches_to_return):
                 print(f"{number}: {word}") 
 
 def brute_force_anywhere(target): 
-    words = search.load_numbered_words("numbered_words.txt")
+    words = search.load_numbered_words("big_words.txt")
     counter = 0
     unique_numbers = set()
     # Collect the unique numbers from the dictionary

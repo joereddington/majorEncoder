@@ -90,6 +90,11 @@ def key_function(option):
     return len(integer_result)
 
 if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        print("Usage: python script_name.py <digits> <max_matches>")
+        sys.exit(1)
+
+    target = sys.argv[1].replace('.','')
     model=MarkovChain()
     test=False
     if test:
@@ -102,7 +107,6 @@ if __name__ == "__main__":
             if file_path.is_file():
                 print(f"Training on {file_path}")
                 model.train_from_file(file_path) 
-    target = "167262192369" #proton mass
     print(f"our target is {target}")
     results = list(find_markov_word_combinations(target, model,[]))
     # TODO should print somehting here. 

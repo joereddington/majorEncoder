@@ -2,13 +2,6 @@ import sys
 import set_generator
 import logging
 
-
-# Configure the logging system
-logging.basicConfig(level=logging.WARNING)  # Set the logging level (DEBUG, INFO, WARNING, ERROR, CRITICAL))
-logger = logging.getLogger("Search Algoritms")
-
-
-
 def load_numbered_words(filename):
     word_dict = {}
     with open(filename, 'r') as f:
@@ -20,15 +13,6 @@ def load_numbered_words(filename):
     sorted_words = dict(sorted(word_dict.items(), key=lambda item: len(item[1]), reverse=True))
     return sorted_words
 
-
-
-
-def get_exact_matches_for_number(target, words):
-        words_found=[]
-        for word,number in words.items():
-            if (number == target):
-                words_found.append(word) 
-        return words_found
 
 def print_results_table(columns):
     if not columns:
@@ -52,56 +36,3 @@ def print_results_table(columns):
         print(" | ".join(formatted_row))
 
     
-def match_number_to_structure(target_digits,structure, padding,results_so_far=[]):
-    #print(padding+"Enter match structure")
-    wordlist=[]
-    if len(structure)>0:
-        wordlist=structure.pop(0) #so we have the words for this itteration and have prepared structure
-    else:
-        return
-    for i in reversed(range(len(target_digits))):
-        #print(padding+"We seek a match for the {} digits:{}".format(i+1,target_digits[:i+1]))
-        words_found=get_exact_matches_for_number(target_digits[:i+1],wordlist)
-        if (words_found):
-            results_so_far.append(words_found)
-            #print(padding+"We found the following matches:")
-            #for word in words_found:
-            #    print(padding+word) 
-            if (target_digits[i+1:]==""):
-                #print(padding+"Whole target matched")
-                #Then recusion finnishes, we are done with this branch 
-                print_results_table(results_so_far)    
-                structure.insert(0,wordlist) #because it's recusive.
-                results_so_far.pop() 
-                return 
-            else:
-                #print(padding+"Now we need to match the renaming section: {}".format(target_digits[i+1:]))
-                match_number_to_structure(target_digits[i+1:],structure, padding+"  ", results_so_far) 
-                
-                results_so_far.pop() 
-                #Don't return here, because the loop will want more
-        else:
-            print(padding+"We found NO matches")
-    structure.insert(0,wordlist) #because it's recusive. 
-    return 
-
-
-
-if __name__ == '__main__':
-    if len(sys.argv) < 3:
-        print("Usage: python script_name.py <digits> <max_matches>")
-        sys.exit(1)
-
-    target_digits = sys.argv[1].replace('.','')
-    max_matches = int(sys.argv[2])
-    verbs = load_numbered_words("numbered_verbs.txt")
-    nouns = load_numbered_words("numbered_nouns.txt")
-    adjectives = load_numbered_words("numbered_adjectives.txt")
-
-
-    # New Approach   
-    # TODO - a quick win is adding some other structures and perhaps reading them from a file
-    structure=[adjectives,nouns]
-    match_number_to_structure(target_digits,structure, "") 
-
-    logger.warning("hello")

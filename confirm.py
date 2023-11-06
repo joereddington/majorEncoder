@@ -121,4 +121,20 @@ confirm("9.1093837015","Highly sexed amish meet sea wolf")
 confirm("1.67262192369","albeit one pencil had numbed") 
 confirm("1.67262192369","Whaleboat napkin hooligan jumped") 
 
+# Neutron Mass 
+confirm("1.67492749804", "Cleopatra decentered chaser") 
+#Note - is that the amerian spelling
+
+
+# Tau mass 
+confirm("3.16754","Mail beautifier")
+
+# Top quark mass 
+confirm("3.0784", "Ham Switcher") 
+
+# W-to-Z mass ratio 
+confirm("0.88153","Sushi shelf mac") 
+
+#weak mixing angle 
+confirm("0.22290","scannings")
 
