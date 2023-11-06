@@ -4,7 +4,7 @@ import sys
 from contextlib import redirect_stdout
 from search import load_numbered_words, find_word_combinations, get_exact_matches_for_number, print_results_table, match_number_to_structure
 import search
-import markov
+import algorithm_markov
 import set_generator
 
 class TestSuite(unittest.TestCase):

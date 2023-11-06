@@ -1,5 +1,9 @@
-#TODO 
 import set_generator
+
+
+#This file confirms that the existing keys we have work for the numbers we have - it's to avoid typos. 
+# It also generates some of the latex code for the book
+
 
 def confirm(number, text):
     number=number.replace(".","")

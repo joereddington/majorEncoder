@@ -4,16 +4,10 @@ import logging
 
 
 # Configure the logging system
-logging.basicConfig(
-    level=logging.WARNING,  # Set the logging level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
-#    filename='myapp.log',  # Specify the log file (optional)
-#    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'  # Define the log message format (optional)
-)
-
+logging.basicConfig(level=logging.WARNING)  # Set the logging level (DEBUG, INFO, WARNING, ERROR, CRITICAL))
 logger = logging.getLogger("Search Algoritms")
 
 
-shortest_chain=9
 
 def load_numbered_words(filename):
     word_dict = {}
@@ -26,61 +20,7 @@ def load_numbered_words(filename):
     sorted_words = dict(sorted(word_dict.items(), key=lambda item: len(item[1]), reverse=True))
     return sorted_words
 
-def find_word_combinations(target, words, current=[]):
-    if not target:  # if the target string is empty, a solution has been found
-        yield current
-        return
 
-    for word, number in words.items():
-        if target.startswith(number):
-            # The word can be used. Continue with the remaining target.
-            yield from find_word_combinations(target[len(number):], words, current + [word])
-
-def find_markov_word_combinations(target, model, current=[]):
-    global shortest_chain
-    logger.debug(f"Entering function: {target}, {current}")
-    if not target:  # if the target string is empty, a solution has been found
-        print(f"Found one of length {len(current)} compared to {shortest_chain}: {current}")
-        if len(current)<shortest_chain:
-            shortest_chain=len(current)
-        yield current
-        return
-    if len(current)>=shortest_chain:
-        logger.debug("exiting because there are shorter versions") 
-        return #there are shorter versions
-    if current: 
-        logger.debug(f"The existing string is {current}")
-        last_word=current[-1]
-        try: 
-            words_that_could_follow=model.lookup_dict[last_word]
-        except:
-            logger.warn("There's been an error") 
-            logger.warn(f"Entering function: {target}, {current}")
-            logger.warn(last_word) 
-            sys.exit(1)
-            
-        for option in words_that_could_follow:
-            number=set_generator.convert_to_integer(option)
-            if number=="":
-                continue
-            if target.startswith(number):
-                yield from find_markov_word_combinations(target[len(number):], model, current + [option])
-    else: 
-        logger.debug("There is nothing in the current string so we pick a word")
-        sorted_options = sorted(model.lookup_dict, key=key_function, reverse=True)
-        count=0
-        for option in sorted_options: #So all the words in the damn file sorted by length
-            number=set_generator.convert_to_integer(option) #TODO - doing this twice.
-            #TODO sort by length
-            if len(number)<1: #Because some words don't have numbers
-                continue
-            if target.startswith(number):
-                yield from find_markov_word_combinations(target[len(number):], model, current + [option])
-
-# Define a key function to calculate the length of converted integers
-def key_function(option):
-    integer_result = set_generator.convert_to_integer(option)
-    return len(integer_result)
 
 
 def get_exact_matches_for_number(target, words):
@@ -144,6 +84,7 @@ def match_number_to_structure(target_digits,structure, padding,results_so_far=[]
     return 
 
 
+
 if __name__ == '__main__':
     if len(sys.argv) < 3:
         print("Usage: python script_name.py <digits> <max_matches>")
@@ -151,7 +92,6 @@ if __name__ == '__main__':
 
     target_digits = sys.argv[1].replace('.','')
     max_matches = int(sys.argv[2])
-    words = load_numbered_words("numbered_words.txt")
     verbs = load_numbered_words("numbered_verbs.txt")
     nouns = load_numbered_words("numbered_nouns.txt")
     adjectives = load_numbered_words("numbered_adjectives.txt")
@@ -162,11 +102,4 @@ if __name__ == '__main__':
     structure=[adjectives,nouns]
     match_number_to_structure(target_digits,structure, "") 
 
-
-    counter = 0
-    for combination in find_word_combinations(target_digits, words):
-        print(", ".join(combination))
-        counter += 1
-        if counter == max_matches:
-            break
-
+    logger.warning("hello")
