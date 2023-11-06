@@ -3326,7 +3326,6 @@ analyzes: 2100
 analyzing: 21029
 anapest: 2607
 anapestic: 2607
-anapests: 26070
 anarch: 248
 anarchic: 248
 anarchical: 2481
