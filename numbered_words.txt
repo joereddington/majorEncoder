@@ -37120,7 +37120,6 @@ fog: 59
 fogbound: 59629
 fogey: 59
 fogeys: 590
-foggages: 59990
 fogged: 5999
 fogger: 5994
 foggers: 59940
