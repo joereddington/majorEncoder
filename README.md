@@ -6,3 +6,8 @@ Running live at http://joereddington.com/major/majorEncoder.php and demonstrated
 
 
 This tool uses the numbering system shown by Derren Brown in the excellent book Trick of the mind. For a (much better) tool that uses the older numbering system see http://www.rememberg.com/
+
+
+
+
+

@@ -1,7 +1,7 @@
 import random
 import set_generator
 import sys
-
+import string
 
 class MarkovChain:
     def __init__(self):
@@ -9,13 +9,21 @@ class MarkovChain:
 
 
     def _generate_lookup_dict(self, text):
+        # Function to remove non-alphabetic characters from a string
+        def remove_non_alphabetic(input_str):
+            return ''.join(char for char in input_str if char.isalpha())
+
+        # Use list comprehension to apply the function to each element in the list
+        cleaned_text = [remove_non_alphabetic(element) for element in text]
+
         for i in range(0, len(text) - 1):
-            key = text[i]
-            next_word = text[i+1]
-            if key in self.lookup_dict:
-                self.lookup_dict[key].add(next_word)
-            else:
-                self.lookup_dict[key] = {next_word}
+            key = cleaned_text[i]
+            next_word = cleaned_text[i+1]
+            if True: 
+                if key in self.lookup_dict:
+                    self.lookup_dict[key].add(next_word)
+                else:
+                    self.lookup_dict[key] = {next_word}
         for key in self.lookup_dict:
             self.lookup_dict[key]=set(sorted(self.lookup_dict[key], key=lambda x: len(x),reverse=True))
 

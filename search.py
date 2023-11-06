@@ -1,5 +1,17 @@
 import sys
 import set_generator
+import logging
+
+
+# Configure the logging system
+logging.basicConfig(
+    level=logging.WARNING,  # Set the logging level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+#    filename='myapp.log',  # Specify the log file (optional)
+#    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'  # Define the log message format (optional)
+)
+
+logger = logging.getLogger("Search Algoritms")
+
 
 shortest_chain=9
 
@@ -26,7 +38,7 @@ def find_word_combinations(target, words, current=[]):
 
 def find_markov_word_combinations(target, model, current=[]):
     global shortest_chain
-#    print(f"Entering function: {target}, {current}")
+    logger.debug(f"Entering function: {target}, {current}")
     if not target:  # if the target string is empty, a solution has been found
         print(f"Found one of length {len(current)} compared to {shortest_chain}: {current}")
         if len(current)<shortest_chain:
@@ -34,26 +46,41 @@ def find_markov_word_combinations(target, model, current=[]):
         yield current
         return
     if len(current)>=shortest_chain:
+        logger.debug("exiting because there are shorter versions") 
         return #there are shorter versions
     if current: 
+        logger.debug(f"The existing string is {current}")
         last_word=current[-1]
-        words_that_could_follow=model.lookup_dict[last_word]
+        try: 
+            words_that_could_follow=model.lookup_dict[last_word]
+        except:
+            logger.warn("There's been an error") 
+            logger.warn(f"Entering function: {target}, {current}")
+            logger.warn(last_word) 
+            sys.exit(1)
+            
         for option in words_that_could_follow:
             number=set_generator.convert_to_integer(option)
             if number=="":
                 continue
             if target.startswith(number):
                 yield from find_markov_word_combinations(target[len(number):], model, current + [option])
-    else: #Then we are in the very start case
-        for option in model.lookup_dict: #So all the words in the damn file 
-            number=set_generator.convert_to_integer(option)
-            if len(number)<3: #Because some words don't have numbers
+    else: 
+        logger.debug("There is nothing in the current string so we pick a word")
+        sorted_options = sorted(model.lookup_dict, key=key_function, reverse=True)
+        count=0
+        for option in sorted_options: #So all the words in the damn file sorted by length
+            number=set_generator.convert_to_integer(option) #TODO - doing this twice.
+            #TODO sort by length
+            if len(number)<1: #Because some words don't have numbers
                 continue
             if target.startswith(number):
-                print(option)
                 yield from find_markov_word_combinations(target[len(number):], model, current + [option])
 
-
+# Define a key function to calculate the length of converted integers
+def key_function(option):
+    integer_result = set_generator.convert_to_integer(option)
+    return len(integer_result)
 
 
 def get_exact_matches_for_number(target, words):

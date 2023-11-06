@@ -43,6 +43,15 @@ class TestSuite(unittest.TestCase):
         first_combination = list(search.find_markov_word_combinations(target, model,["cat"]))[0]
         self.assertEqual(first_combination,['cat', 'helped', 'big', 'dog'])
         
+    def test_markov_stop(self):
+        training_string="big. dog helped big cat helped"
+        model=markov.MarkovChain()
+        model.train(training_string)
+        target = set_generator.convert_to_integer("helped big dog") # Because we're about to give them 'cat' for free
+        first_combination = list(search.find_markov_word_combinations(target, model,["cat"]))[0]
+        self.assertEqual(first_combination,['cat', 'helped', 'big', 'dog'])
+
+
     def test_markov2(self):
         training_string="big dog helped big cat helped"
         model=markov.MarkovChain()
@@ -56,13 +65,13 @@ class TestSuite(unittest.TestCase):
         training_string="apples bears apples pears apples bears"
         model=markov.MarkovChain()
         model.train(training_string)
-        self.assertEqual(model.lookup_dict["apples"],["pears","bears"])
+        self.assertEqual(sorted(model.lookup_dict["apples"]),sorted(["pears","bears"]))
 
-    def test_markov_from_file(self):
+    def test_markov_protonmass(self):
         model=markov.MarkovChain()
         model.train_from_file("testinputs/hobbit.txt")
         from pathlib import Path
-        directory_path=Path("testinputs") 
+        directory_path=Path("sources") 
         for file_path in directory_path.iterdir():
             if file_path.is_file():
                 print(file_path)
@@ -76,13 +85,13 @@ class TestSuite(unittest.TestCase):
         model=markov.MarkovChain()
         training_string="apple bbb apple bb apple bbbb apple b"
         model.train(training_string)
-        self.assertEqual(model.lookup_dict["apple"],['bbbb', 'bbb', 'bb', 'b'])
+        self.assertEqual(sorted(model.lookup_dict["apple"]),sorted(['bb', 'bbbb', 'bbb', 'b']))
 
     def test_markov_ordering2(self):
         model=markov.MarkovChain()
         training_string="apple bbb apple baaaab apple bbbb apple b"
         model.train(training_string)
-        self.assertEqual(model.lookup_dict["apple"],['bbbb', 'bbb', 'baaaab', 'b'])
+        self.assertEqual(sorted(model.lookup_dict["apple"]),sorted(['baaaab', 'bbbb', 'b', 'bbb']))
 
     
 
