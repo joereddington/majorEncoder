@@ -1,17 +1,12 @@
 import search 
 import sys
 
-
-
-
-
-def recursive_number_combinations(target, unique_numbers):
-#    print("Enter the function")
+def recursive_number_combinations(target, unique_numbers,max_results=0):
+    all_results=[]
     for number in unique_numbers:
         index = target.find(number)
         if index != -1:
             target_before=target[:index] 
-#            print(f"We've found {number} and now seek {target_before}")
             results_before=[]
             if len(target_before)>0: 
                 results_before=recursive_number_combinations(target_before,unique_numbers)
@@ -23,11 +18,15 @@ def recursive_number_combinations(target, unique_numbers):
                 results_after=recursive_number_combinations(target_after,unique_numbers)
                 if len(results_after)==0:
                     return []
-
             to_return = results_before + [number] + results_after
-#            print(to_return)
-            return(to_return)
+            if max_results==0:
+                return(to_return)
+            if to_return not in all_results:
+                all_results.append(to_return) 
+            if len(all_results)>max_results:
+                return(all_results)
     return [] 
+
 
 
 def find_number_combinations(target, unique_numbers, current=[]):
@@ -116,7 +115,7 @@ def brute_force_biggest(target, matches_to_return):
             if len(number)>2:
                 print(f"{number}: {word}") 
 
-def brute_force_anywhere(target): 
+def brute_force_anywhere(target,max_matches): 
     words = search.load_numbered_words("big_words.txt")
     counter = 0
     unique_numbers = set()
@@ -124,9 +123,10 @@ def brute_force_anywhere(target):
     for word, number in words.items():
         unique_numbers.add(number)
     sorted_unique_numbers = sorted(unique_numbers, key=lambda x: len(str(x)),reverse=True)
-    result= recursive_number_combinations(target,sorted_unique_numbers)
-    print(result)
-    print_table_for_number_combination(result,words)
+    results= recursive_number_combinations(target,sorted_unique_numbers,max_matches)
+    for result in results:
+        print(result)
+        print_table_for_number_combination(result,words)
 
 if __name__ == '__main__':
     if len(sys.argv) < 3:
@@ -137,7 +137,7 @@ if __name__ == '__main__':
     max_matches = int(sys.argv[2])
 #    brute_force_number_find(target_digits,max_matches)
 #    brute_force_biggest(target_digits,max_matches)
-    brute_force_anywhere(target_digits)
+    brute_force_anywhere(target_digits,max_matches)
 
 
 # TODO 

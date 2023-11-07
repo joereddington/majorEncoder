@@ -46,24 +46,25 @@ def to_latex(text):
     return_me+="\\end{enumerate}\n"
     return return_me
 
-# Speed of light 
+print("Speed of light")
 confirm("299792", "Winged Tigon")
 confirm("299792", "indigo octagon")
 confirm("299792", "Candied Takedown")
 
 
 
-# Planck Constant
+print("Planck Constant")
 confirm("6.62607015","cobweb in books with saliva")
 confirm("6.62607015","happen because it's life")
 confirm("6.62607015","bee hobnobs itself") # Brute recursive 
 
-# Reduced Planck Constant 
-# NOT treid
+print("Reduced Planck Constant")
+confirm("1.054571817","Elusive refutal chocolate") 
+confirm("1.054571817","Exclusive roof-tool chocolate") 
 
-# 1.25663706212  Vacuum magnetic pereability 
+# 1.25663706212  Vacuum magnetic pereability  - checked with looping recusion brute
 
-# 376.730313668 Characteristic impedance of vacuum
+# 376.730313668 Characteristic impedance of vacuum checked with looping recusion brute
 # Boltzmann constant 
 confirm("1.380649", "calm cheeseboard")
 
@@ -77,6 +78,7 @@ print(to_latex("happy thermos"))
 
 # Coulomb Constant 
 confirm("8.9875517923", "Chad shut afflicted cinema")  
+confirm("8.9875517923", "She headshot afflicted enemy")  
 
 #Cosmological constant
 confirm("1.089","clockwise chad")
@@ -101,16 +103,42 @@ confirm("1.191042972","Illegalize orangutan")
 # Second radiation constant 
 confirm("1.438776877","Alarm chatty bushtit")
 
-# 2.897771955 Wien wavelength displacement law constant
+print("Wien wavelength displacement law constant") 
+confirm("2.897771955","unwashed kitty-cat laid-off") 
 
 # 5.878925757  wien 
+print("Wien frequency displacement law constant") 
+
+confirm("5.878925757","fish watched unfit feet")
+
 
 # 3.002916077 wien 
-
+print("Wien entropy displacement law constant") 
+confirm("3.002916077","messianic goalpost cat") 
 
 # 1.602176634 elementary charge 
 
-7.748091729
+
+
+print("Conductance quantum ")
+confirm("7.748091729","Hot thrushes gloating") 
+
+print("invest conductance quantum")
+confirm("12906.40372","liking escapers hometown")
+confirm("12906.40372","landscape horsemeat ink")
+confirm("12906.40372","Landscaper cosmetician")
+
+print("von Klizing constant") 
+confirm("25812.80745","knavish lunches thive") 
+
+
+
+print("magnetic flux quantum") 
+confirm("2.067833848","inspect chummy church") 
+
+print("inverse find-structure constant") 
+confirm("137.035999084","acclimatise movie eggheads choir") 
+
 
 # Electron mass
 confirm("9.1093837015","Glazed mash comatose elf")
@@ -138,3 +166,61 @@ confirm("0.88153","Sushi shelf mac")
 #weak mixing angle 
 confirm("0.22290","scannings")
 
+
+# bohn magneton
+confirm("9.2740100783","headhunters closest chum")
+
+
+# nuclear magneton 
+confirm("5.0507837461","evasive scotch metacarpal") 
+
+
+#classial electon radius 
+confirm("2.8179403262","unshackle outdoorsmn pony") 
+
+
+#Thomson cross section :( 
+
+
+print("Bohr radius")
+confirm("5.29177210903","fondle quotational sadism") 
+confirm("5.29177210903","vexingly taxational sadism") 
+
+
+print("Hartree energy")
+confirm("4.3597447222071","Remove deterioration on newcastle")
+
+print("Rydberg unit of energy")
+
+
+print("Rydberg constant")
+
+print("Fermi coupling constant")
+confirm("1.1663787","wallop bee matchete" )
+print("Avogadro constant")
+confirm("6.02214076","bison concealers tape")
+confirm("6.02214076","poison cancelers tuba") 
+
+
+
+print("molar gas constant")
+
+print("Faraday constant")
+print("molar Planck constant")
+confirm("   3.9903127128934314","medicaid simulant clinched my airmailer")
+confirm("   3.9903127128934314","medicaid simulant clinched homeroom liar")
+print("atomic mass of carbon-12")
+confirm("1.99264687992","lego kidnap crapshoot guidance")
+confirm("1.99264687992","'Aladdin burp!' shouted dan!")
+
+# There are better ways of remembering modar mass but... 
+print("molar mass of carbon-12")
+confirm("11.9999999958","ill-judged goody-goody hogfish") 
+confirm("11.9999999958","ill-judged giddy dogfish") 
+
+print("atomic mass constant")
+print("molar mass constant")
+print("molar volume of silicon")
+confirm("1.205883199","Aliens fish chemical dog") 
+print("hyperfine transition frequency of 133Cs")
+confirm("9192631770","golden bee omelettes") 
