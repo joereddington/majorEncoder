@@ -47,7 +47,7 @@ def to_latex(text):
     return return_me
 
 print("Speed of light")
-confirm("299792", "Winged Tigon")
+confirm("299792", "Winged Tigon") #THIS ISN'T THE WHOLE SPEED!!!
 confirm("299792", "indigo octagon")
 confirm("299792", "Candied Takedown")
 
@@ -129,7 +129,7 @@ confirm("12906.40372","landscape horsemeat ink")
 confirm("12906.40372","Landscaper cosmetician")
 
 print("von Klizing constant") 
-confirm("25812.80745","knavish lunches thive") 
+confirm("25812.80745","knavish lunches thrive") 
 
 
 
@@ -162,6 +162,8 @@ confirm("3.0784", "Ham Switcher")
 
 # W-to-Z mass ratio 
 confirm("0.88153","Sushi shelf mac") 
+confirm("88153","chachalaca foam") 
+
 
 #weak mixing angle 
 confirm("0.22290","scannings")

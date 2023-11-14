@@ -14,7 +14,7 @@ class TestSuite(unittest.TestCase):
 
     def test_load_numbered_words(self):
         # Test the load_numbered_words function
-        filename = "test_numbered_words.txt"
+        filename = "testinputs/test_numbered_words.txt"
         with open(filename, 'w') as f:
             f.write("apple: one\nbanana: two\ncherry: three\n")
         
